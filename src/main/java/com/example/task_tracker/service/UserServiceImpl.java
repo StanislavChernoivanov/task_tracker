@@ -8,7 +8,7 @@ import org.springframework.stereotype.Service;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
-import javax.swing.text.html.parser.Entity;
+import java.util.List;
 import java.util.Set;
 import java.util.UUID;
 
@@ -50,7 +50,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public Flux<User> findByIds(Set<String> ids) {
+    public Flux<User> findByIds(List<String> ids) {
         return userRepository.findAllById(ids);
     }
 

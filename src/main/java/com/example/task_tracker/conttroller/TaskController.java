@@ -4,7 +4,6 @@ import com.example.task_tracker.service.TaskService;
 import com.example.task_tracker.web.mapstuct.TaskMapper;
 import com.example.task_tracker.web.mapstuct.UserMapper;
 import com.example.task_tracker.web.model.request.TaskRequest;
-import com.example.task_tracker.web.model.request.UserRequest;
 import com.example.task_tracker.web.model.response.TaskResponse;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -21,7 +20,6 @@ public class TaskController {
 
     private final TaskMapper taskMapper;
 
-    private final UserMapper userMapper;
 
     @GetMapping
     public Flux<TaskResponse> findAll() {
@@ -36,12 +34,11 @@ public class TaskController {
                 .defaultIfEmpty(ResponseEntity.notFound().build());
     }
 
-    @PatchMapping("/observer/{id}")
+    @PatchMapping("/observer/{taskId}")
     public Mono<ResponseEntity<TaskResponse>> addObserver(
-            @PathVariable("id") String taskId,
-            @RequestParam String userId)
-    {
-        return taskService.addObserver(userId)
+            @PathVariable String taskId,
+            @RequestParam String userId) {
+        return taskService.addObserver(taskId, userId)
                 .map(taskMapper::taskToResponse)
                 .map(ResponseEntity::ok)
                 .defaultIfEmpty(ResponseEntity.notFound().build());
@@ -53,6 +50,7 @@ public class TaskController {
                 .map(taskMapper::taskToResponse)
                 .map(ResponseEntity::ok);
     }
+
 
     @PutMapping("/{id}")
     public Mono<ResponseEntity<TaskResponse>> update(@PathVariable String id,

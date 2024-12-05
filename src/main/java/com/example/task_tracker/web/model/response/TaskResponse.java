@@ -6,9 +6,9 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.sql.Array;
-import java.time.Instant;
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 @Data
@@ -22,5 +22,5 @@ public class TaskResponse {
     private TaskStatus status;
     private User author;
     private User assignee;
-    private Set<User> observers = new HashSet<>();
+    private List<User> observers = new ArrayList<>();
 }

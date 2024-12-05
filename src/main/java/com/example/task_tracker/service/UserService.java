@@ -4,6 +4,7 @@ import com.example.task_tracker.model.entity.User;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
+import java.util.List;
 import java.util.Set;
 
 public interface UserService {
@@ -18,5 +19,5 @@ public interface UserService {
 
     Mono<Void> deleteById(String id);
 
-    Flux<User> findByIds(Set<String> ids);
+    Flux<User> findByIds(List<String> ids);
 }

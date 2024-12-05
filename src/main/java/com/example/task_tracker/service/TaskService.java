@@ -14,7 +14,7 @@ public interface TaskService {
 
     Mono<Task> update(String id, Task task);
 
-    Mono<Task> addObserver(String userId);
+    Mono<Task> addObserver(String taskId, String userId);
 
     Mono<Void> deleteById(String id);
 }
